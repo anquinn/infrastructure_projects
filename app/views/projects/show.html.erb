@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+    <div class="col-md-12">
+
+	<div class="card" ">
+	  <div class="card-header text-right">
+	    Status: 
+	  	<% if @project.construction_end_date? %>
+	  		<span class="text-success">Completed
+	  	<% elsif @project.construction_start_date? %>
+	  		<span class="text-primary">In Progress
+	  	<% else %>
+	  		<span class="text-info">Approved - Waiting to start</span>
+	  	<% end %>
+	  </div>
+
+	  <div class="card-block">
+	    <h1 class="card-title"><%= @project.title_en %></h1>
+	    <h2 class="card-subtitle mb-2 text-muted"><%= @project.location.name_en %>, <%= @project.location.region.region_display %></h2>
+	  </div>
+	  <ul class="list-group list-group-flush">
+	  	<li class="list-group-item">Approved Date: <%= @project.approved_date %></li>
+	    <li class="list-group-item">Category: <%= @project.category.title_en %></li>
+	    <li class="list-group-item">Program: &nbsp;<%= link_to @project.program.title_en, @project.program %></li>
+	    <li class="list-group-item">Federal Contribution: <%= number_to_currency(@project.federal_contribution) %></li>
+	    <li class="list-group-item">Total Eligible Cost: <%= number_to_currency(@project.total_eligible_cost) %></li>
+	    <li class="list-group-item">Ultimate Recipient: <%= @project.ultimate_recipient_en %></li>
+	    <% if @project.construction_start_date? %>
+	    	<li class="list-group-item">Construction Start Date: <%= @project.construction_start_date %></li>
+	    <% else %>
+	    	<li class="list-group-item">Forecasted Construction Start Date: <%= @project.forecasted_construction_start_date %></li>
+	    <% end %>
+
+	    <% if @project.construction_end_date? %>
+	    	<li class="list-group-item">Construction End Date: <%= @project.construction_end_date %></li>
+	    <% else %>
+	    	<li class="list-group-item">Forecasted Construction End Date: <%= @project.forecasted_construction_end_date %></li>
+	    <% end %>
+	    
+	    
+	  </ul>
+	  <div class="card-block">
+	  	<%= link_to 'Back to projects', projects_path, class: "card-link" %>
+	  </div>
+	</div>
+</div>

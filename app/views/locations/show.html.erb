@@ -1,0 +1,179 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @location.name_en %></h1>
+
+<div class="row row-header">
+	<div class="col-sm-12">
+		<h2>Since 2002</h2>
+	</div>
+</div>	
+
+<div class="row stat-row">
+  <div class="col-sm-4">
+    <div class="card stat-card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Number of Projects</h3>
+        <p class="card-number"><%= @total_projects %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Eligable Costs</h3>
+        <p class="card-number">$<%= number_to_human(@total_eligible_costs) %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Federal Dollars Spent</h3>
+        <p class="card-number">$<%= number_to_human(@total_federal_contributions) %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-header">
+	<div class="col-sm-12">
+		<h2>Under Harper</h2>
+	</div>
+</div>
+
+<div class="row stat-row">
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Number of Projects</h3>
+        <p class="card-number"><%= @harper_projects %></p>
+       </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Eligible Costs</h3>
+        <p class="card-number">$<%= number_to_human(@harper_eligible_costs) %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Federal Dollars Spent</h3>
+        <p class="card-number">$<%= number_to_human(@harper_dollars) %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-header">
+	<div class="col-sm-12">
+		<h2>Since Election</h2>
+	</div>
+</div>
+
+<div class="row stat-row">
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Number of Projects</h3>
+        <p class="card-number"><%= @projects_since_election %></p>
+        <p class="card-text">
+        	<strong>
+        		<%= (@total_projects_year_over_year > 0)? '+':'' %><%= number_with_precision @total_projects_year_over_year, :precision => 2 %>%
+        	</strong>
+        	Jan to Dec <%= Date.today.prev_year.year %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Eligible Costs</h3>
+        <p class="card-number">$<%= number_to_human(@eligible_since_election) %></p>
+        <p class="card-text">
+        	<strong>
+        		<%= (@total_eligible_year_over_year > 0)? '+':'' %><%= number_with_precision @total_eligible_year_over_year, :precision => 2 %>%
+        	</strong>
+        	Jan to Dec <%= Date.today.prev_year.year %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Federal Dollars Spent</h3>
+        <p class="card-number">$<%= number_to_human(@dollars_since_election) %></p>
+        <p class="card-text">
+        	<strong>
+        		<%= (@total_project_dollars_year_over_year > 0)? '+':'' %><%= number_with_precision @total_project_dollars_year_over_year, :precision => 2 %>%
+        	</strong>
+        	Jan to Dec <%= Date.today.prev_year.year %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row stat-row">
+	<div class="col-sm-4">
+	    <div class="card stat-card">
+	      <div class="card-block">
+	        <h3 class="card-title">Cons. vs. Libs. Dollars</h3>
+	        <p class="card-number">$<%= number_to_human(@harper_dollar_comparison) %></p>
+	      </div>
+	    </div>
+	</div>
+
+	<div class="col-sm-4">
+	    <div class="card stat-card">
+	      <div class="card-block">
+	        <h3 class="card-title">Average Project Cost</h3>
+	        <p class="card-number">$<%= number_to_human(@average_project_cost) %></p>
+	      </div>
+	    </div>
+	</div>
+
+	<div class="col-sm-4">
+	    <div class="card stat-card">
+	      <div class="card-block">
+	        <h3 class="card-title">Median Project Cost</h3>
+	        <p class="card-number">$<%= number_to_human(@median_project_cost) %></p>
+	      </div>
+	    </div>
+	</div>
+</div>
+
+<div class="row row-header">
+	<div class="col-sm-12">
+		<h2>Projects </h2>
+	</div>
+</div>	
+
+<table class="table table-hover table-bordered">
+  <thead class="thead-default">
+    <tr class="row m-0">
+      <th class="d-inline-block col-md-7">Project</th>
+      <th class="d-inline-block col-md-3">Federal Contribution</th>
+      <th class="d-inline-block col-md-2">Approved Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr class="row m-0">
+        <td class="d-inline-block col-md-7"><%= link_to project.title_en, project %></td>
+        <td class="d-inline-block col-md-3"><%= number_to_currency(project.federal_contribution) %></td>
+        <td class="d-inline-block col-md-2"><%= project.approved_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -1,0 +1,210 @@
+<h1>Dashboard</h1>
+
+<div class="row row-header">
+	<div class="col-sm-12">
+		<h2>Since 2002</h2>
+	</div>
+</div>	
+
+<div class="row stat-row">
+  <div class="col-sm-4">
+    <div class="card stat-card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Number of Projects</h3>
+        <p class="card-number"><%= @total_projects %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Eligable Costs</h3>
+        <p class="card-number">$<%= number_to_human(@total_eligible_costs) %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Federal Dollars Spent</h3>
+        <p class="card-number">$<%= number_to_human(@total_federal_contributions) %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-header">
+	<div class="col-sm-12">
+		<h2>Under Harper</h2>
+	</div>
+</div>
+
+<div class="row stat-row">
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Number of Projects</h3>
+        <p class="card-number"><%= @harper_projects %></p>
+       </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Eligible Costs</h3>
+        <p class="card-number">$<%= number_to_human(@harper_eligible_costs) %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Federal Dollars Spent</h3>
+        <p class="card-number">$<%= number_to_human(@harper_dollars) %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-header">
+	<div class="col-sm-12">
+		<h2>Since Election</h2>
+	</div>
+</div>
+
+<div class="row stat-row">
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Number of Projects</h3>
+        <p class="card-number"><%= @projects_since_election %></p>
+        <p class="card-text">
+        	<strong>
+        		<%= (@total_projects_year_over_year > 0)? '+':'' %><%= number_with_precision @total_projects_year_over_year, :precision => 2 %>%
+        	</strong>
+        	Jan to Dec <%= Date.today.prev_year.year %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Eligible Costs</h3>
+        <p class="card-number">$<%= number_to_human(@eligible_since_election) %></p>
+        <p class="card-text">
+        	<strong>
+        		<%= (@total_eligible_year_over_year > 0)? '+':'' %><%= number_with_precision @total_eligible_year_over_year, :precision => 2 %>%
+        	</strong>
+        	Jan to Dec <%= Date.today.prev_year.year %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Federal Dollars Spent</h3>
+        <p class="card-number">$<%= number_to_human(@dollars_since_election) %></p>
+        <p class="card-text">
+        	<strong>
+        		<%= (@total_project_dollars_year_over_year > 0)? '+':'' %><%= number_with_precision @total_project_dollars_year_over_year, :precision => 2 %>%
+        	</strong>
+        	Jan to Dec <%= Date.today.prev_year.year %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row stat-row">
+	<div class="col-sm-4">
+	    <div class="card stat-card">
+	      <div class="card-block">
+	        <h3 class="card-title">Cons. vs. Libs. Dollars</h3>
+	        <p class="card-number">$<%= number_to_human(@harper_dollar_comparison) %></p>
+	      </div>
+	    </div>
+	</div>
+
+	<div class="col-sm-4">
+	    <div class="card stat-card">
+	      <div class="card-block">
+	        <h3 class="card-title">Average Project Cost</h3>
+	        <p class="card-number">$<%= number_to_human(@average_project_cost) %></p>
+	      </div>
+	    </div>
+	</div>
+
+	<div class="col-sm-4">
+	    <div class="card stat-card">
+	      <div class="card-block">
+	        <h3 class="card-title">Median Project Cost</h3>
+	        <p class="card-number">$<%= number_to_human(@median_project_cost) %></p>
+	      </div>
+	    </div>
+	</div>
+</div>
+
+<div class="row row-header">
+	<div class="col-sm-12">
+		<h2>Project Approval Frequency in the Last Year</h2>
+	</div>
+</div>	
+
+<div class="row stat-row">
+	<div class="col-md-12">
+		<%= line_chart Project.where('approved_date > ?', "2015-10-15").group_by_month(:approved_date).count %>
+	</div>
+</div>
+
+<div class="row row-header">
+	<div class="col-sm-12">
+		<h2>Projects By Region Since the Election</h2>
+	</div>
+</div>	
+
+<div class="row stat-row">
+	<div class="col-md-12">
+		<%= column_chart Project.joins(:region).where('approved_date > ?', "2015-10-15").group("regions.code").count, xtitle: "Regions", ytitle: "Projects", adapter: "google" %>
+	</div>
+</div>
+
+<div class="row row-header">
+	<div class="col-sm-12">
+		<h2>Median Project Cost By Region Since the Election</h2>
+	</div>
+</div>	
+
+<div class="row stat-row">
+	<div class="col-md-12">
+		<%= column_chart Project.joins(:region).where('approved_date > ?', "2015-10-15").group("regions.code").median(:federal_contribution), xtitle: "Regions", ytitle: "Dollars", adapter: "google", library: {pointSize: 0, vAxis:  {format: "long"}} %>
+	</div>
+</div>
+
+<div class="row row-header">
+	<div class="col-sm-12">
+		<h2>Total Dollars Spent By Region Since the Election</h2>
+	</div>
+</div>	
+
+<div class="row stat-row">
+	<div class="col-md-12">
+		<%= column_chart Project.joins(:region).where('approved_date > ?', "2015-10-15").group("regions.code").sum(:federal_contribution), xtitle: "Regions", ytitle: "Dollars", adapter: "google", library: {pointSize: 0, vAxis:  {format: "long"}} %>
+	</div>
+</div>
+
+<div class="row stat-row">
+	<div class="col-md-6">
+		<h2>Dollars Spent by Governments</h2>
+		<%= pie_chart({"Trudeau" => @dollars_since_election, "Harper" => @harper_dollars}, colors: ["#d71920", "#1A4782"]) %>
+	</div>
+
+	<div class="col-md-6">
+		<h2># of Projects by Governments</h2>
+		<%= pie_chart({"Trudeau" => @projects_since_election, "Harper" => @harper_projects}, colors: ["#d71920", "#1A4782"]) %>
+	</div>
+</div>
