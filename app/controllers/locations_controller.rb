@@ -61,6 +61,9 @@ class LocationsController < ApplicationController
 
 
     @average_project_cost = @dollars_since_election/@projects_since_election
+    if @average_project_cost.nan?
+      @average_project_cost = 0;
+    end
 
     @median_project_cost = Project.where(location_id: @location.id).where('approved_date > ?', "2006-02-06").where('approved_date < ?', election_date).median(:federal_contribution)
   end

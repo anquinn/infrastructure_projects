@@ -86,7 +86,11 @@
         <p class="card-number"><%= @projects_since_election %></p>
         <p class="card-text">
         	<strong>
-        		<%= (@total_projects_year_over_year > 0)? '+':'' %><%= number_with_precision @total_projects_year_over_year, :precision => 2 %>%
+            <% if @total_projects_year_over_year %>
+              <span class="text-muted">--</span>%
+            <% else %>
+              <%= (@total_projects_year_over_year > 0)? '+':'' %><%= number_with_precision @total_projects_year_over_year, :precision => 2 %>%
+            <% end %>
         	</strong>
         	Jan to Dec <%= Date.today.prev_year.year %></p>
       </div>
@@ -100,7 +104,11 @@
         <p class="card-number">$<%= number_to_human(@eligible_since_election) %></p>
         <p class="card-text">
         	<strong>
-        		<%= (@total_eligible_year_over_year > 0)? '+':'' %><%= number_with_precision @total_eligible_year_over_year, :precision => 2 %>%
+            <% if @total_eligible_year_over_year %>
+              <span class="text-muted">--</span>%
+            <% else %>
+              <%= (@total_eligible_year_over_year > 0)? '+':'' %><%= number_with_precision @total_eligible_year_over_year, :precision => 2 %>%
+            <% end %>
         	</strong>
         	Jan to Dec <%= Date.today.prev_year.year %></p>
       </div>
@@ -114,7 +122,11 @@
         <p class="card-number">$<%= number_to_human(@dollars_since_election) %></p>
         <p class="card-text">
         	<strong>
-        		<%= (@total_project_dollars_year_over_year > 0)? '+':'' %><%= number_with_precision @total_project_dollars_year_over_year, :precision => 2 %>%
+            <% if @total_project_dollars_year_over_year %>
+              <span class="text-muted">--</span>%
+            <% else %>
+              <%= (@total_project_dollars_year_over_year > 0)? '+':'' %><%= number_with_precision @total_project_dollars_year_over_year, :precision => 2 %>%
+            <% end %>
         	</strong>
         	Jan to Dec <%= Date.today.prev_year.year %></p>
       </div>
@@ -136,7 +148,14 @@
 	    <div class="card stat-card">
 	      <div class="card-block">
 	        <h3 class="card-title">Average Project Cost</h3>
-	        <p class="card-number">$<%= number_to_human(@average_project_cost) %></p>
+	        <p class="card-number">
+            <% if @average_project_cost == 0 %>
+              <span class="text-muted">--</span>
+            <% else %>
+              $<%= number_to_human(@average_project_cost) %>
+            <% end %>
+          </p>
+          
 	      </div>
 	    </div>
 	</div>
@@ -145,7 +164,15 @@
 	    <div class="card stat-card">
 	      <div class="card-block">
 	        <h3 class="card-title">Median Project Cost</h3>
-	        <p class="card-number">$<%= number_to_human(@median_project_cost) %></p>
+	        <p class="card-number">
+            <% if @median_project_cost.nil? %>
+              <span class="text-muted">--</span>
+            <% else %>
+              $<%= number_to_human(@median_project_cost) %>
+            <% end %>
+          
+            
+          </p>
 	      </div>
 	    </div>
 	</div>
@@ -159,19 +186,19 @@
 
 <table class="table table-hover table-bordered">
   <thead class="thead-default">
-    <tr class="row m-0">
-      <th class="d-inline-block col-md-7">Project</th>
-      <th class="d-inline-block col-md-3">Federal Contribution</th>
-      <th class="d-inline-block col-md-2">Approved Date</th>
+    <tr>
+      <th style="width:60%;" >Project</th>
+      <th style="width:23%;" >Federal Contribution</th>
+      <th style="width:17%;" >Approved Date</th>
     </tr>
   </thead>
 
   <tbody>
     <% @projects.each do |project| %>
-      <tr class="row m-0">
-        <td class="d-inline-block col-md-7"><%= link_to project.title_en, project %></td>
-        <td class="d-inline-block col-md-3"><%= number_to_currency(project.federal_contribution) %></td>
-        <td class="d-inline-block col-md-2"><%= project.approved_date %></td>
+      <tr>
+        <td><%= link_to project.title_en, project %></td>
+        <td><%= number_to_currency(project.federal_contribution) %></td>
+        <td><%= project.approved_date %></td>
       </tr>
     <% end %>
   </tbody>

@@ -21,7 +21,7 @@
 	  </div>
 	  <ul class="list-group list-group-flush">
 	  	<li class="list-group-item">Approved Date: <%= @project.approved_date %></li>
-	    <li class="list-group-item">Category: <%= @project.category.title_en %></li>
+	    <li class="list-group-item">Category: &nbsp;<%= link_to @project.category.title_en, @project.category %></li>
 	    <li class="list-group-item">Program: &nbsp;<%= link_to @project.program.title_en, @project.program %></li>
 	    <li class="list-group-item">Federal Contribution: <%= number_to_currency(@project.federal_contribution) %></li>
 	    <li class="list-group-item">Total Eligible Cost: <%= number_to_currency(@project.total_eligible_cost) %></li>
