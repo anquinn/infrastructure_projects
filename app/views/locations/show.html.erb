@@ -196,23 +196,37 @@
 	</div>
 </div>	
 
-<table class="table table-hover table-bordered">
-  <thead class="thead-default">
-    <tr>
-      <th style="width:60%;" >Project</th>
-      <th style="width:23%;" >Federal Contribution</th>
-      <th style="width:17%;" >Approved Date</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @projects.each do |project| %>
+<div class="table-responsive">
+  <table class="table table-hover table-bordered">
+    <thead class="thead-default">
       <tr>
-        <td><%= link_to project.title_en, project %></td>
-        <td><%= number_to_currency(project.federal_contribution) %></td>
-        <td><%= project.approved_date %></td>
+        <th style="width:60%;" >Project</th>
+        <th style="width:23%;" >Federal Contribution</th>
+        <th style="width:17%;" >Approved Date</th>
       </tr>
+    </thead>
+
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= link_to project.title_en, project %></td>
+          <td><%= number_to_currency(project.federal_contribution) %></td>
+          <td><%= project.approved_date %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+  <h3>You might also be interested in these locations:</h3>
+  <ul>
+    <% @suggested_locations.each do |location| %>
+      
+       <li><%= link_to location.name_en, location %></li>
     <% end %>
-  </tbody>
-</table>
+  </ul>
+  </div>
+</div>
 

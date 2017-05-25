@@ -54,6 +54,11 @@ class LocationsController < ApplicationController
     end
 
     @median_project_cost = Project.where(location_id: @location.id).where('approved_date > ?', "2006-02-06").where('approved_date < ?', election_date).median(:federal_contribution)
+
+    # driver_to_delete = @driver.first # you need the object that you want removed
+    # @drivers.reject!{|driver| driver == driver_to_delete}
+
+    @suggested_locations = Location.where("name_en like ?", "%#{@location.name_en}%").reject { |l| l == @location }
   end
 
   # GET /locations/new

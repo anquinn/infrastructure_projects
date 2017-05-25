@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @category.title_en %></h1>
+<h1>Category: <%= @category.title_en %></h1>
 
 <div class="row stat-row">
   <div class="col-sm-4">
@@ -33,24 +33,30 @@
 
 <h2>Projects</h2>
 
-<table class="table table-hover table-bordered">
-  <thead class="thead-default">
-    <tr>
-      <th style="width=60%;">Project</th>
-      <th style="width=20%;">Federal Contribution</th>
-      <th style="width=20%;">Approved Date</th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered">
+        <thead class="thead-default">
+          <tr>
+            <th style="width=60%;">Project</th>
+            <th style="width=20%;">Federal Contribution</th>
+            <th style="width=20%;">Approved Date</th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= link_to project.title_en, project %></td>
-        <td><%= number_to_currency(project.federal_contribution) %></td>
-        <td><%= project.approved_date %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <tbody>
+          <% @projects.each do |project| %>
+            <tr>
+              <td><%= link_to project.title_en, project %></td>
+              <td><%= number_to_currency(project.federal_contribution) %></td>
+              <td><%= project.approved_date %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 <%= will_paginate @projects, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>

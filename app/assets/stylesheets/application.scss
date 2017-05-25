@@ -54,6 +54,18 @@ tr.row {
 	}
 }
 
+.pagination {
+  @media (max-width: 480px) {
+  	margin: 0 auto;
+    li {
+      display: none;
+      &.active,&.previous,&.next {
+        display: inline;
+      }
+    }
+ }
+}
+
 .footer {
 	padding: 20px;
 	margin-top: 20px;
