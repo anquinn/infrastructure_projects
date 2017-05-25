@@ -1,6 +1,6 @@
 # Infrastructure Projects
 
-A simple app to visulaize and compare infrastructure projects and dollars spent in Canada.
+A simple app to visualize and compare infrastructure projects and dollars spent in Canada.
 
 [See it in action](http://infrastructure.andrewquinn.ca)
 
