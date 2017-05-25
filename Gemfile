@@ -41,6 +41,7 @@ gem 'groupdate'
 gem 'ransack'
 gem 'active_median'
 gem 'font-awesome-sass'
+gem 'whenever'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
