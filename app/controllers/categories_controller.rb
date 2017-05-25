@@ -14,6 +14,8 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @projects = Project.where(category_id: @category.id).paginate(:page => params[:page], :per_page => 50)
+    @total_federal_contributions = Project.where(category_id: @category.id).sum(:federal_contribution)
+    @total_eligible_costs = Project.where(category_id: @category.id).sum(:total_eligible_cost)
   end
 
   # GET /categories/new

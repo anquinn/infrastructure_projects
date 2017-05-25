@@ -14,10 +14,8 @@ class ProgramsController < ApplicationController
   # GET /programs/1.json
   def show
     @projects = Project.where(program_id: @program.id).paginate(:page => params[:page], :per_page => 50)
-    # @q = Project.ransack(params[:q] = "title_en_eq=@program_title_en")
-    # @q.sorts = 'title_en asc' if @q.sorts.empty?
-    # @projects = @q.result(distinct: true)
-    #             .paginate(:page => params[:page], :per_page => 50)
+    @total_federal_contributions = Project.where(program_id: @program.id).sum(:federal_contribution)
+    @total_eligible_costs = Project.where(program_id: @program.id).sum(:total_eligible_cost)
   end
 
   # GET /programs/new

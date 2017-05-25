@@ -9,6 +9,16 @@ Rails.application.routes.draw do
   resources :programs, only: [:index, :show]
   resources :categories, only: [:index, :show]
 
+  resources :charts, only: [] do
+    collection do
+      get 'project_frequency'
+      get 'projects_by_region'
+      get 'median_project_cost'
+      get 'total_spent_by_region'
+      get 'dollars_spent_by_governments'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

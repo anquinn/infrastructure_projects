@@ -2,6 +2,35 @@
 
 <h1><%= @category.title_en %></h1>
 
+<div class="row stat-row">
+  <div class="col-sm-4">
+    <div class="card stat-card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Number of Projects</h3>
+        <p class="card-number"><%= @category.projects_count %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Eligible Costs</h3>
+        <p class="card-number">$<%= number_to_human(@total_eligible_costs) %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card stat-card">
+      <div class="card-block">
+        <h3 class="card-title">Total Federal Dollars Spent</h3>
+        <p class="card-number">$<%= number_to_human(@total_federal_contributions) %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <h2>Projects</h2>
 
 <table class="table table-hover table-bordered">

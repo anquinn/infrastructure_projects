@@ -169,7 +169,7 @@
 
 <div class="row stat-row">
 	<div class="col-md-12">
-		<%= line_chart Project.where('approved_date > ?', "2015-10-15").group_by_month(:approved_date).count %>
+		<%= line_chart project_frequency_charts_path %>
 	</div>
 </div>
 
@@ -181,7 +181,7 @@
 
 <div class="row stat-row">
 	<div class="col-md-12">
-		<%= column_chart Project.joins(:region).where('approved_date > ?', "2015-10-15").group("regions.code").count, xtitle: "Regions", ytitle: "Projects", adapter: "google" %>
+		<%= column_chart projects_by_region_charts_path, xtitle: "Regions", ytitle: "Projects", adapter: "google" %>
 	</div>
 </div>
 
@@ -193,7 +193,7 @@
 
 <div class="row stat-row">
 	<div class="col-md-12">
-		<%= column_chart Project.joins(:region).where('approved_date > ?', "2015-10-15").group("regions.code").median(:federal_contribution), xtitle: "Regions", ytitle: "Dollars", adapter: "google", library: {pointSize: 0, vAxis:  {format: "long"}} %>
+		<%= column_chart median_project_cost_charts_path, xtitle: "Regions", ytitle: "Dollars", adapter: "google", library: {pointSize: 0, vAxis:  {format: "long"}} %>
 	</div>
 </div>
 
@@ -205,7 +205,7 @@
 
 <div class="row stat-row">
 	<div class="col-md-12">
-		<%= column_chart Project.joins(:region).where('approved_date > ?', "2015-10-15").group("regions.code").sum(:federal_contribution), xtitle: "Regions", ytitle: "Dollars", adapter: "google", library: {pointSize: 0, vAxis:  {format: "long"}} %>
+		<%= column_chart total_spent_by_region_charts_path, xtitle: "Regions", ytitle: "Dollars", adapter: "google", library: {pointSize: 0, vAxis:  {format: "long"}} %>
 	</div>
 </div>
 
