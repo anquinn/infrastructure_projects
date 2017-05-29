@@ -218,15 +218,17 @@
   </table>
 </div>
 
-<div class="row">
-  <div class="col-md-12">
-  <h3>You might also be interested in these locations:</h3>
-  <ul>
-    <% @suggested_locations.each do |location| %>
-      
-       <li><%= link_to location.name_en, location %></li>
-    <% end %>
-  </ul>
+<% if @suggested_locations.present? %>
+  <div class="row">
+    <div class="col-md-12">
+    <h3>You might also be interested in these locations:</h3>
+    <ul>
+      <% @suggested_locations.each do |location| %>
+        
+         <li><%= link_to location.name_en, location %></li>
+      <% end %>
+    </ul>
+    </div>
   </div>
-</div>
+<% end %>
 
