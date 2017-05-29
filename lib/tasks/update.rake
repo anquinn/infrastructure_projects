@@ -5,6 +5,7 @@ namespace :db do
     require 'open-uri'
 
     puts "Starting import..."
+
     record_count = 0
 
     filename = "http://infrastructure.gc.ca/alt-format/opendata/project-list-liste-de-projets-bil.csv"
@@ -80,8 +81,14 @@ namespace :db do
         project.save!
 
       record_count = record_count + 1
+
+      print "#{record_count} project records imported \r"
     end
 
     puts "#{record_count} project records imported"
+
+    timestamp = "#{Time.now.strftime("%Y-%m-%d_%H-%M")}.txt"
+    directory = "#{Dir.pwd}/lib/tasks"
+    File.open(File.join(directory, timestamp), 'w')
   end
 end
