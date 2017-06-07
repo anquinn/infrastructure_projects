@@ -85,10 +85,8 @@ namespace :db do
       print "#{record_count} project records imported \r"
     end
 
+    puts "--"
     puts "#{record_count} project records imported"
-
-    timestamp = "#{Time.now.strftime("%Y-%m-%d_%H-%M")}.txt"
-    directory = "#{Dir.pwd}/lib/tasks"
-    File.open(File.join(directory, timestamp), 'w')
+    puts "#{Time.now.strftime("%Y-%m-%d_%H-%M")}"
   end
 end
