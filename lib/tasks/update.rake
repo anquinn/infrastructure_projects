@@ -85,7 +85,7 @@ namespace :db do
       print "#{record_count} project records imported \r"
     end
 
-    puts "--"
+    puts "--                                          "
     puts "#{record_count} project records imported"
     puts "#{Time.now.strftime("%Y-%m-%d_%H-%M")}"
   end

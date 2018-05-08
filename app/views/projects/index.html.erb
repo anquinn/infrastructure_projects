@@ -5,9 +5,9 @@
     <%= search_form_for @q , :html => { :class => "" } do |f| %>
       <div class="input-group">
         <%= f.search_field :title_en_or_location_name_en_cont, class: 'form-control form-control-lg', placeholder: "Search project names or locations" %>
-        <span class="input-group-btn">
+        <div class="input-group-append">
           <%= f.submit "Search", :class => 'btn btn-primary' %>
-        </span>
+        </div>
       </div>
       <div class="form-group">
         
@@ -22,7 +22,7 @@
   <div class="col-sm-12">
     <div class="table-responsive">
       <table class="table table-hover table-bordered ">
-        <thead class="thead-default">
+        <thead class="thead-light">
           <tr>
             <th style="width:60%;" ><%= sort_link(@q, :title_en, 'Title', default_order: :asc) %></th>
             <th style="width:20%;" ><%= sort_link(@q, :location_name_en, 'Location', default_order: :asc) %></th>

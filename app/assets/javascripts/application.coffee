@@ -13,6 +13,7 @@
 #= require jquery
 #= require tether
 #= require jquery_ujs
+#= require popper
 #= require bootstrap
 #= require Chart.bundle
 #= require chartkick

@@ -24,7 +24,7 @@ html {
 }
 body {
   padding-top: 4.5rem;
-  margin-bottom: 60px;
+  padding-bottom: 105px;
 }
 
 .stat-row {
@@ -59,17 +59,17 @@ tr.row {
 	}
 }
 
-.pagination {
-  @media (max-width: 480px) {
-  	margin: 0 auto;
-    li {
-      display: none;
-      &.active,&.previous,&.next {
-        display: inline;
-      }
-    }
- }
-}
+// .pagination {
+//   @media (max-width: 480px) {
+//   	margin: 0 auto;
+//     li {
+//       display: none;
+//       &.active,&.previous,&.next {
+//         display: inline;
+//       }
+//     }
+//  }
+// }
 
 .footer {
 	padding: 20px;

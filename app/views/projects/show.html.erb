@@ -15,7 +15,7 @@
 		  	<% end %>
 		  </div>
 
-		  <div class="card-block">
+		  <div class="card-body">
 		    <h1 class="card-title"><%= @project.title_en %></h1>
 		    <h2 class="card-subtitle mb-2 text-muted"><%= @project.location.name_en %>, <%= @project.location.region.region_display %></h2>
 		  </div>
@@ -40,7 +40,7 @@
 		    <% end %>  
 		  </ul>
 
-		  <div class="card-block">
+		  <div class="card-body">
 		  	<%= link_to 'Back to projects', projects_path, class: "card-link" %>
 		  </div>
 		</div>
