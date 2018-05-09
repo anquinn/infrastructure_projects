@@ -88,5 +88,7 @@ namespace :db do
     puts "--                                          "
     puts "#{record_count} project records imported"
     puts "#{Time.now.strftime("%Y-%m-%d_%H-%M")}"
+
+    update = Update.create(record_count:record_count)
   end
 end
