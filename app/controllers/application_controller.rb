@@ -9,5 +9,4 @@ class ApplicationController < ActionController::Base
         @last_update = Update.last.created_at
       end
 
-  
 end
