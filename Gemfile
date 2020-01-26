@@ -34,7 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap4'
 gem 'chartkick'
