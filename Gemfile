@@ -43,6 +43,7 @@ gem 'ransack'
 gem 'active_median'
 gem 'font-awesome-sass'
 gem 'whenever'
+gem 'open_uri_redirections'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'

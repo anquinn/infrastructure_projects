@@ -98,7 +98,7 @@
         <p class="card-number"><%= @projects_since_election %></p>
         <p class="card-text">
         	<strong>
-            <% if @total_projects_year_over_year %>
+            <% if @total_projects_year_over_year.blank? %>
               <span class="text-muted">--</span>%
             <% else %>
               <%= (@total_projects_year_over_year > 0)? '+':'' %><%= number_with_precision @total_projects_year_over_year, :precision => 2 %>%
@@ -116,7 +116,7 @@
         <p class="card-number">$<%= number_to_human(@eligible_since_election) %></p>
         <p class="card-text">
         	<strong>
-            <% if @total_eligible_year_over_year %>
+            <% if @total_eligible_year_over_year.blank? %>
               <span class="text-muted">--</span>%
             <% else %>
               <%= (@total_eligible_year_over_year > 0)? '+':'' %><%= number_with_precision @total_eligible_year_over_year, :precision => 2 %>%
@@ -134,7 +134,7 @@
         <p class="card-number">$<%= number_to_human(@dollars_since_election) %></p>
         <p class="card-text">
         	<strong>
-            <% if @total_project_dollars_year_over_year %>
+            <% if @total_project_dollars_year_over_year.blank? %>
               <span class="text-muted">--</span>%
             <% else %>
               <%= (@total_project_dollars_year_over_year > 0)? '+':'' %><%= number_with_precision @total_project_dollars_year_over_year, :precision => 2 %>%

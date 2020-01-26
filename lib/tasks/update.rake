@@ -3,6 +3,7 @@ namespace :db do
   task :update => :environment do
     require 'csv'
     require 'open-uri'
+    require 'open_uri_redirections'
 
     puts "Starting import..."
 
@@ -10,7 +11,7 @@ namespace :db do
 
     filename = "http://infrastructure.gc.ca/alt-format/opendata/project-list-liste-de-projets-bil.csv"
 
-    CSV.parse(open(filename, 'r:iso-8859-1:utf-8'){|f| f.read}, headers: true, header_converters: :symbol) do |row|
+    CSV.parse(open(filename, 'r:iso-8859-1:utf-8', :allow_redirections => :all){|f| f.read}, headers: true, header_converters: :symbol) do |row|
 
       project_number = row[0]
       project_title_en = row[1]
@@ -88,6 +89,7 @@ namespace :db do
     puts "--                                          "
     puts "#{record_count} project records imported"
     puts "#{Time.now.strftime("%Y-%m-%d_%H-%M")}"
+    puts "--                                          "
 
     update = Update.create(record_count:record_count)
   end
