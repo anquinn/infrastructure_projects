@@ -7,7 +7,7 @@
     <div class="card stat-card stat-card">
       <div class="card-body">
         <h3 class="card-title">Total Number of Projects</h3>
-        <p class="card-number"><%= @program.projects_count %></p>
+        <p class="card-number"><%= number_with_delimiter(@program.projects_count, :delimiter => ',') %></p>
       </div>
     </div>
   </div>

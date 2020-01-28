@@ -17,7 +17,7 @@
     <div class="card stat-card stat-card">
       <div class="card-body">
         <h3 class="card-title">Total Number of Projects</h3>
-        <p class="card-number"><%= @total_projects %></p>
+        <p class="card-number"><%= number_with_delimiter(@total_projects, :delimiter => ',') %></p>
       </div>
     </div>
   </div>
@@ -56,7 +56,7 @@
     <div class="card stat-card">
       <div class="card-body">
         <h3 class="card-title">Total Number of Projects</h3>
-        <p class="card-number"><%= @harper_projects %></p>
+        <p class="card-number"><%= number_with_delimiter(@harper_projects, :delimiter => ',') %></p>
        </div>
     </div>
   </div>
@@ -95,7 +95,7 @@
     <div class="card stat-card">
       <div class="card-body">
         <h3 class="card-title">Total Number of Projects</h3>
-        <p class="card-number"><%= @projects_since_election %></p>
+        <p class="card-number"><%= number_with_delimiter(@projects_since_election, :delimiter => ',') %></p>
         <p class="card-text">
         	<strong>
             <% if @total_projects_year_over_year.blank? %>
